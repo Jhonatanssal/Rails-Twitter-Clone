@@ -1,39 +1,24 @@
 <div class="column">
   <nav class="panel">
     <p class="panel-heading">Who to Follow</p>
+    <% @tweets.each do |tweet| %>
     <div class="panel-block">
       <article class="media">
         <div class="media-left">
           <figure class="image is-32x32">
-            <img src="https://bulma.io/images/placeholders/64x64.png">
+          <%= gravatar_image_tag(tweet.user.email, size: 64, alt: tweet.user.name) %>
           </figure>
         </div>
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>Anita Smith</strong>
-              <small>@anitasmith</small>
-            </p>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong><%= link_to tweet.user.name, edit_user_registration_path %> </strong><br>
+                <small>@<%= tweet.user.username %></small>
+              </p>
+            </div>
           </div>
-        </div>
       </article>
     </div>
-      <div class="panel-block">
-      <article class="media">
-        <div class="media-left">
-          <figure class="image is-32x32">
-            <img src="https://bulma.io/images/placeholders/64x64.png">
-          </figure>
-        </div>
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>Anita Smith</strong>
-              <small>@anitasmith</small>
-            </p>
-          </div>
-        </div>
-      </article>
-    </div>
+    <% end %>
   </nav>
 </div>

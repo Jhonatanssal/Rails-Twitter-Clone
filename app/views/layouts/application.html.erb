@@ -12,14 +12,9 @@
   </head>
 
   <body>
-    <% if flash[:notice] %>
-      <div class="notification is_primary global-notification">
-        <p class="notice"><%= notice %></p>
-      </div>
-    <% end %>
     <% if flash[:alert] %>
       <div class=" notificacion is_danger global-notification">
-        <p class="alert"><%= alert %></p>
+        <p class="alert bg-danger text-center text-white"><%= alert %></p>
       </div>
     <% end %>
     <nav class="navbar is-info">
@@ -38,9 +33,23 @@
         <div class="navbar-end">
           <div class="field is-grouped d-flex align-items-center">
             <p class="control">
-              <%= link_to 'New Tweet', new_tweet_path, class: "button is-info is-inverted" %>
+              <%= link_to 'New Tweet', root_path, class: "button is-info is-inverted" %>
             </p>
-            <p class="control mt-3">Sign in</p>
+            <% if user_signed_in? %>
+              <p class="control">
+                <%= link_to current_user.name, edit_user_registration_path, class: 'button is-info' %>
+              </p>
+              <p class="mt-3">
+                <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'button is-danger' %>
+              </p>
+            <% else %>
+              <p class="control">
+                <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary' %>
+              </p>
+              <p class="control mt-3">
+                <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary' %>
+              </p>
+            <% end %>
           </div>
         </div>
       </div>
