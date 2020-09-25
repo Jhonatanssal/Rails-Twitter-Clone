@@ -6,7 +6,7 @@
       <article class="media">
         <div class="media-left">
           <figure class="image is-32x32">
-          <%= gravatar_image_tag(tweet.user.email, size: 64, alt: tweet.user.name) %>
+          <%= link_to gravatar_image_tag(tweet.user.email, size: 64, alt: tweet.user.name) %>
           </figure>
         </div>
           <div class="media-content">

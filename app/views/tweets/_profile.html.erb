@@ -5,40 +5,22 @@
       <article class="media">
         <div class="media-left">
           <figure class="image is-64x64">
-            <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
+            <%= link_to gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
           </figure>
         </div>
         <div class="media-content">
-          <div class="content">
+          <div class="content float-left">
             <p>
               <strong><%= link_to current_user.name, edit_user_registration_path %> </strong><br>
               <small>@<%= current_user.username%> </small>
             </p>
           </div>
+          <div class="content text-center float-left ml-4">
+            <p class="heading"><%= link_to 'Tweets', root_path %> </p>
+            <p class="title is-6"><%= current_user.tweets.count %></p>
+          </div>
         </div>
       </article>
-    </div>
-    <div class="panel-block">
-      <div class="level is-mobile">
-        <div class="level-item has-centered-text">
-          <div>
-            <p class="heading">Tweets</p>
-              <p class="title is-6"><%= current_user.tweets.count %> </p>
-          </div>
-        </div>
-        <div class="level-item has-centered-text">
-          <div>
-            <p class="heading">Following</p>
-              <p class="title is-6">65451</p>
-          </div>
-        </div>
-        <div class="level-item has-centered-text">
-          <div>
-            <p class="heading">Followers</p>
-              <p class="title is-6">654654</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </div>  
   </nav>
 </div>

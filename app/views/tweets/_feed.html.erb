@@ -3,7 +3,7 @@
   <article class="media box">
     <figure class="media-left">
       <p class="image is-64x64">
-        <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
+        <%= link_to gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
       </p>
     </figure>
     <div class="media-content">
@@ -16,27 +16,31 @@
     <div class="box">
       <article class="media">
         <div class="media-left">
-        <figure class="image is-64x64">
-          <%= gravatar_image_tag(tweet.user.email, size: 64, alt: tweet.user.name) %>
-        </figure>
+        <% if user_signed_in? %>
+          <figure class="image is-64x64">
+            <%= link_to gravatar_image_tag(tweet.user.email, size: 64, alt: tweet.user.name) %>
+          </figure>
+        <% end %>
         </div>
         <div class="media-content">
           <div class="content">
+        <% if user_signed_in? %>
             <strong><%= tweet.user.name %></strong><br>
             <small>@<%= tweet.user.username %></small><br>
+        <% end %>
             <p><%= tweet.tweet%></p>
           </div>
           <% if user_signed_in? %>
             <nav class="level">
               <div class="level-left is-mobile">
                 <%= link_to tweet, class: "level-item" do %>
-                  <span class="icon"><i class="fa fa-link" aria-hidden="true"></i> </span>
+                  <span class="icon"><i class="fas fa-expand"  aria-hidden="true"></i></span>
                 <% end %>
                 <%= link_to edit_tweet_path(tweet), class: "level-item" do %>
-                  <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                  <span class="icon"><i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
                 <% end %>
                 <%= link_to tweet, method: :delete, data: { confirm: 'Delete Tweet?'}, class: "level-item" do %>
-                  <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                  <span class="icon"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
                 <% end %>
               </div>
             </nav>
